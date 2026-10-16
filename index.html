@@ -1042,96 +1042,6 @@
             color: var(--text-primary);
         }
 
-        .bg-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .bg-btn {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 2px solid transparent;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            font-family: inherit;
-            color: var(--text-secondary);
-            outline: none;
-            text-align: right;
-        }
-
-        [data-theme="light"] .bg-btn {
-            background: rgba(0, 0, 0, 0.03);
-        }
-
-        .bg-btn:hover {
-            background: rgba(255, 255, 255, 0.07);
-            transform: translateY(-2px);
-        }
-
-        [data-theme="light"] .bg-btn:hover {
-            background: rgba(0, 0, 0, 0.06);
-        }
-
-        .bg-btn:focus-visible {
-            outline: 3px solid #229ED9;
-            outline-offset: 2px;
-        }
-
-        .bg-btn.active {
-            border-color: #229ED9;
-            background: rgba(34, 158, 217, 0.12);
-            box-shadow: 0 0 22px rgba(34, 158, 217, 0.3);
-        }
-
-        .bg-btn-preview {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.35), inset 0 0 0 2px rgba(255,255,255,0.15);
-            background-size: cover;
-            background-position: center;
-        }
-
-        .bg-btn-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .bg-btn-label {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-
-        .bg-btn-desc {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .bg-btn.danger {
-            grid-column: 1 / -1;
-        }
-
-        .bg-btn.danger .bg-btn-label {
-            color: #ef4444;
-        }
-
         .contact-list {
             display: flex;
             flex-direction: column;
@@ -1760,27 +1670,7 @@
 </head>
 <body data-bg="default">
 
-    <!-- ★★★ استرجاع خلفية المستخدم المحفوظة فوراً قبل رسم أي شيء ★★★ -->
-    <script>
-        (function () {
-            try {
-                var mode = localStorage.getItem('app-bg');
-                var savedImg = localStorage.getItem('app-custom-bg');
-                if (mode === 'custom') {
-                    // نخفي الخلفية الافتراضية فوراً لمنع أي تغيير أو وميض
-                    document.body.setAttribute('data-bg', 'custom');
-                    if (savedImg) {
-                        var st = document.createElement('style');
-                        st.id = 'custom-bg-style';
-                        st.textContent = 'body[data-bg="custom"]{background:url("' + savedImg + '") center center / cover no-repeat fixed !important;background-attachment:fixed !important;}';
-                        document.head.appendChild(st);
-                    }
-                }
-            } catch (e) {}
-        })();
-    </script>
-
-    <img id="bg-gif" src="https://i.supaimg.com/8dbd90c6-a960-4a23-a9e3-f3d6e927692e/6c8245ba-17a7-4fcd-a40f-d202838cb798.gif" alt="خلفية متحركة" />
+    <img id="bg-gif" src="https://i.ibb.co/RpSxnBWN/maryam-tello-E3t3uru-O-n-Y-unsplash.webp" alt="خلفية" />
     <div class="gif-overlay"></div>
 
     <header>
@@ -1831,13 +1721,13 @@
                 <div class="vod-tabs">
                     <button class="vod-tab active" id="vod-tab-movies" onclick="switchVodTab('movies')" tabindex="0">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+                            <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"></path>
                         </svg>
                         <span data-lang-key="vod_tab_movies">أفلام</span>
                     </button>
                     <button class="vod-tab" id="vod-tab-series" onclick="switchVodTab('series')" tabindex="0">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zM9 10v6l5-3z"/>
+                            <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zM9 10v6l5-3z"></path>
                         </svg>
                         <span data-lang-key="vod_tab_series">مسلسلات</span>
                     </button>
@@ -1856,7 +1746,7 @@
             <div id="series-info-view">
                 <button class="series-back-btn" onclick="closeSeriesView()" tabindex="0">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        <path d="M19 12H5M12 19l-7-7 7-7"></path>
                     </svg>
                     <span data-lang-key="vod_back">رجوع</span>
                 </button>
@@ -1881,11 +1771,11 @@
                 <div class="settings-card">
                     <div class="settings-card-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
-                            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
-                            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
-                            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
-                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+                            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+                            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+                            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
                         </svg>
                         <h3 data-lang-key="premium_themes_title">ثيمات مميزة</h3>
                     </div>
@@ -1908,61 +1798,7 @@
                 <div class="settings-card">
                     <div class="settings-card-header">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                            <circle cx="8.5" cy="8.5" r="1.5"/>
-                            <polyline points="21 15 16 10 5 21"/>
-                        </svg>
-                        <h3 data-lang-key="bg_title">خلفية التطبيق</h3>
-                    </div>
-                    <div class="bg-grid">
-                        <button class="bg-btn active" data-bg-option="default" onclick="setBackground('default')" tabindex="0">
-                            <span class="bg-btn-preview" style="background: linear-gradient(135deg, #0d0f17, #1a1d2e);">
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <circle cx="8.5" cy="8.5" r="1.5"/>
-                                    <polyline points="21 15 16 10 5 21"/>
-                                </svg>
-                            </span>
-                            <span class="bg-btn-info">
-                                <span class="bg-btn-label" data-lang-key="bg_default">افتراضي</span>
-                                <span class="bg-btn-desc" data-lang-key="bg_default_desc">الخلفية المتحركة</span>
-                            </span>
-                        </button>
-
-                        <button class="bg-btn" id="upload-bg-btn" data-bg-option="custom" onclick="triggerBgUpload()" tabindex="0">
-                            <span class="bg-btn-preview" style="background: linear-gradient(135deg, #229ED9, #007aff);">
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                    <polyline points="17 8 12 3 7 8"/>
-                                    <line x1="12" y1="3" x2="12" y2="15"/>
-                                </svg>
-                            </span>
-                            <span class="bg-btn-info">
-                                <span class="bg-btn-label" data-lang-key="bg_upload">رفع صورة</span>
-                                <span class="bg-btn-desc" data-lang-key="bg_upload_desc">من معرض جهازك</span>
-                            </span>
-                        </button>
-
-                        <button class="bg-btn danger" id="remove-bg-btn" onclick="removeCustomBg()" tabindex="0" style="display:none;">
-                            <span class="bg-btn-preview" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
-                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="3 6 5 6 21 6"/>
-                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                                </svg>
-                            </span>
-                            <span class="bg-btn-info">
-                                <span class="bg-btn-label" data-lang-key="bg_remove">حذف الخلفية</span>
-                                <span class="bg-btn-desc" data-lang-key="bg_remove_desc">الرجوع للخلفية الافتراضية</span>
-                            </span>
-                        </button>
-                    </div>
-                    <input type="file" id="bg-upload-input" accept="image/*" style="display:none;" onchange="handleBgUpload(event)" />
-                </div>
-
-                <div class="settings-card">
-                    <div class="settings-card-header">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
                         <h3 data-lang-key="block_contact">تواصل معنا</h3>
                     </div>
@@ -2016,7 +1852,7 @@
             <span data-lang-key="nav_channels">قنوات</span>
         </div>
         <div class="nav-item" id="nav-vod" onclick="switchPage('vod', this)" tabindex="0">
-            <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4zM4 8h2v2H4V8zm0 4h2v2H4v-2zm0 4h2v2H4v-2zM18 18H6v-6h12v6zm0-8H8V8h10v2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4zM4 8h2v2H4V8zm0 4h2v2H4v-2zm0 4h2v2H4v-2zM18 18H6v-6h12v6zm0-8H8V8h10v2z"></path></svg>
             <span data-lang-key="nav_vod">مسلسلات</span>
         </div>
         <div class="nav-item" id="nav-settings" onclick="switchPage('settings', this)" tabindex="0">
@@ -2033,7 +1869,7 @@
                 <div class="player-top-actions">
                     <button class="player-back-btn" onclick="closePlayer()" title="رجوع">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                            <path d="M19 12H5M12 19l-7-7 7-7"></path>
                         </svg>
                     </button>
                 </div>
@@ -2041,7 +1877,6 @@
                 <div class="player-spacer"></div>
             </div>
 
-            <!-- ★★★ شريط التقدم (يظهر فقط للأفلام والمسلسلات) ★★★ -->
             <div class="player-progress-container" id="playerProgressContainer">
                 <span class="player-time" id="currentTimeLabel">00:00</span>
                 <div class="player-progress-bar" id="progressBar">
@@ -2063,25 +1898,25 @@
                 </button>
                 <button class="p-ctrl" id="playPauseBtn" onclick="togglePlayPause()" title="تشغيل/إيقاف">
                     <svg id="playPauseIcon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z"/>
+                        <path d="M8 5v14l11-7z"></path>
                     </svg>
                 </button>
                 <button class="p-ctrl" id="muteBtn" onclick="toggleMute()" title="الصوت">
                     <svg id="muteIcon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path>
                     </svg>
                 </button>
                 <button class="p-ctrl" id="fillBtn" onclick="toggleFill()" title="ملء الفيديو">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 3 21 3 21 9"/>
-                        <polyline points="9 21 3 21 3 15"/>
-                        <line x1="21" y1="3" x2="14" y2="10"/>
-                        <line x1="3" y1="21" x2="10" y2="14"/>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <polyline points="9 21 3 21 3 15"></polyline>
+                        <line x1="21" y1="3" x2="14" y2="10"></line>
+                        <line x1="3" y1="21" x2="10" y2="14"></line>
                     </svg>
                 </button>
                 <button class="p-ctrl" id="fullscreenBtn" onclick="toggleFullscreen()" title="تكبير الشاشة">
                     <svg id="fullscreenIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
                     </svg>
                 </button>
             </div>
@@ -2218,8 +2053,8 @@
         let loaderTimeout = null;
         let idleTimer = null;
         let fillMode = false;
-        let isVodPlaying = false;       // ★ هل الفيديو الحالي فيلم/مسلسل؟
-        let isSeeking = false;          // ★ هل المستخدم يسحب شريط التقدم؟
+        let isVodPlaying = false;
+        let isSeeking = false;
 
         // ============================================================
         //  حالة VOD
@@ -2269,7 +2104,6 @@
             if (currLabel) currLabel.textContent = formatTime(current);
             if (totLabel && isFinite(total)) totLabel.textContent = formatTime(total);
 
-            // تحديث المخزّن (buffered)
             const buffered = document.getElementById('progressBuffered');
             if (buffered && playerVideo.buffered && playerVideo.buffered.length > 0) {
                 try {
@@ -2294,7 +2128,6 @@
                 const percent = Math.max(0, Math.min(1, x / rect.width));
                 if (playerVideo && playerVideo.duration && isFinite(playerVideo.duration)) {
                     const newTime = percent * playerVideo.duration;
-                    // تحديث الواجهة فوراً قبل قفزة الفيديو
                     const fill = document.getElementById('progressFill');
                     const handle = document.getElementById('progressHandle');
                     if (fill) fill.style.width = (percent * 100) + '%';
@@ -2530,7 +2363,7 @@
                 grid.innerHTML = `
                     <div class="vod-empty">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
+                            <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"></path>
                         </svg>
                         <div>${translations[currentLang].vod_empty_movies}</div>
                     </div>
@@ -2555,7 +2388,7 @@
                 grid.innerHTML = `
                     <div class="vod-empty">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zM9 10v6l5-3z"/>
+                            <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zM9 10v6l5-3z"></path>
                         </svg>
                         <div>${translations[currentLang].vod_empty_series}</div>
                     </div>
@@ -2614,7 +2447,7 @@
             if (rating > 0) {
                 const ratingEl = document.createElement('span');
                 ratingEl.className = 'vod-card-rating';
-                ratingEl.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>${rating.toFixed(1)}`;
+                ratingEl.innerHTML = `<svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>${rating.toFixed(1)}`;
                 meta.appendChild(ratingEl);
             }
 
@@ -2641,7 +2474,7 @@
         }
 
         // ============================================================
-        //  ★ تشغيل فيلم (VOD) - سريع ★
+        //  ★ تشغيل فيلم (VOD) ★
         // ============================================================
         function playMovie(movie) {
             if (!movie) return;
@@ -2651,7 +2484,7 @@
         }
 
         // ============================================================
-        //  ★ تشغيل حلقة (VOD) - سريع ★
+        //  ★ تشغيل حلقة (VOD) ★
         // ============================================================
         function playEpisode(ep) {
             if (!ep || !ep.id) return;
@@ -2798,7 +2631,7 @@
 
                 const playIcon = document.createElement('div');
                 playIcon.className = 'ep-play-icon';
-                playIcon.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+                playIcon.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>`;
                 thumb.appendChild(playIcon);
 
                 card.appendChild(thumb);
@@ -3118,7 +2951,6 @@
                 if (!playingStarted) onFatalFailover();
             }, { once: true });
             video.src = u;
-            // ★ للأفلام والمسلسلات: ننتظر loadedmetadata بسرعة ثم نلعب
             if (isVodPlaying) {
                 video.load();
             }
@@ -3153,7 +2985,6 @@
             nativePlay(url);
         }
 
-        // ★★★ playChannel معدلة: تقبل نوع المشغل ★★★
         function playChannel(streamUrl, channelName, tsUrl, playerType) {
             if (!streamUrl) return;
 
@@ -3170,7 +3001,6 @@
             isSeeking = false;
             clearTimeout(audioOnlyTimer);
 
-            // ★ تحديد نوع المشغل ★
             isVodPlaying = (playerType === 'vod');
 
             const qBtn = document.getElementById('quality-btn');
@@ -3192,12 +3022,10 @@
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            // ★ إظهار/إخفاء شريط التقدم ★
             if (progressContainer) {
                 if (isVodPlaying) {
                     progressContainer.classList.add('vod-active');
                     progressContainer.classList.remove('hidden');
-                    // إعادة تصفير
                     const fill = document.getElementById('progressFill');
                     const handle = document.getElementById('progressHandle');
                     const buf = document.getElementById('progressBuffered');
@@ -3215,7 +3043,6 @@
             }
 
             showLoader();
-            // ★ وقت أقل للـ VOD ★
             loaderTimeout = setTimeout(() => hideLoader(), isVodPlaying ? 6000 : 10000);
 
             destroyPlayers();
@@ -3282,9 +3109,9 @@
             const icon = document.getElementById('muteIcon');
             if (!icon || !playerVideo) return;
             if (playerVideo.muted) {
-                icon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+                icon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"></path>';
             } else {
-                icon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+                icon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"></path>';
             }
         }
 
@@ -3312,9 +3139,9 @@
             const icon = document.getElementById('fullscreenIcon');
             if (!icon) return;
             if (document.fullscreenElement || document.webkitFullscreenElement) {
-                icon.innerHTML = '<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>';
+                icon.innerHTML = '<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>';
             } else {
-                icon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>';
+                icon.innerHTML = '<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>';
             }
         }
 
@@ -3433,7 +3260,7 @@
                     playingStarted = true;
                     hideLoader();
                     const icon = document.getElementById('playPauseIcon');
-                    if (icon) icon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+                    if (icon) icon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>';
                     if (isVodPlaying) updateProgressBar();
                     setTimeout(() => {
                         if (!triedTsFallback && currentTsUrl && v.videoWidth === 0 && !v.paused && v.readyState >= 2) {
@@ -3443,11 +3270,10 @@
                 });
                 v.addEventListener('pause', () => {
                     const icon = document.getElementById('playPauseIcon');
-                    if (icon) icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+                    if (icon) icon.innerHTML = '<path d="M8 5v14l11-7z"></path>';
                 });
                 v.addEventListener('waiting', () => { if (!playingStarted) showLoader(); });
                 v.addEventListener('playing', () => { hideLoader(); });
-                // ★ أحداث شريط التقدم ★
                 v.addEventListener('timeupdate', updateProgressBar);
                 v.addEventListener('loadedmetadata', updateProgressBar);
                 v.addEventListener('durationchange', updateProgressBar);
@@ -3455,7 +3281,7 @@
                 v.addEventListener('seeked', updateProgressBar);
                 v.addEventListener('ended', () => {
                     const icon = document.getElementById('playPauseIcon');
-                    if (icon) icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+                    if (icon) icon.innerHTML = '<path d="M8 5v14l11-7z"></path>';
                 });
             }
             setupProgressBar();
@@ -3540,7 +3366,7 @@
                 ensureVodLoaded();
             }
 
-            const focusable = activeSec?.querySelector('button, a, .channel-card, .vod-card, .episode-card, .nav-item, input, .theme-btn, .bg-btn, .contact-item');
+            const focusable = activeSec?.querySelector('button, a, .channel-card, .vod-card, .episode-card, .nav-item, input, .theme-btn, .contact-item');
             if (focusable) {
                 setTimeout(() => focusable.focus(), 100);
             }
@@ -3565,197 +3391,15 @@
                 btn.classList.toggle('active', opt === themeName);
             });
 
-            try { localStorage.setItem('app-theme', themeName); } catch(e) {}
+            localStorage.setItem('app-theme', themeName);
         }
 
         // ============================================================
-        //  ★ خلفية التطبيق (حفظ دائم للصورة) ★
+        //  ★ خلفية التطبيق (الخلفية ثابتة من الصورة) ★
         // ============================================================
-        const BG_MODE_KEY = 'app-bg';            // 'default' أو 'custom'
-        const BG_LS_KEY   = 'app-custom-bg';     // نسخة سريعة (Base64)
-        const BG_DB_NAME  = 'appBackgroundDB';   // قاعدة بيانات IndexedDB
-        const BG_DB_STORE = 'backgrounds';
-        const BG_DB_KEY   = 'custom-background';
-
-        // ---------- أدوات IndexedDB ----------
-        function openBgDatabase() {
-            return new Promise((resolve, reject) => {
-                if (!window.indexedDB) { reject(new Error('IndexedDB not supported')); return; }
-                let req;
-                try { req = indexedDB.open(BG_DB_NAME, 1); } catch (e) { reject(e); return; }
-                req.onupgradeneeded = function () {
-                    const db = req.result;
-                    if (!db.objectStoreNames.contains(BG_DB_STORE)) {
-                        db.createObjectStore(BG_DB_STORE);
-                    }
-                };
-                req.onsuccess = function () { resolve(req.result); };
-                req.onerror = function () { reject(req.error); };
-            });
-        }
-
-        function saveBgToDB(dataUrl) {
-            return openBgDatabase().then(db => new Promise((resolve, reject) => {
-                const tx = db.transaction(BG_DB_STORE, 'readwrite');
-                tx.objectStore(BG_DB_STORE).put(dataUrl, BG_DB_KEY);
-                tx.oncomplete = function () { db.close(); resolve(true); };
-                tx.onerror = function () { db.close(); reject(tx.error); };
-                tx.onabort = function () { db.close(); reject(tx.error); };
-            }));
-        }
-
-        function loadBgFromDB() {
-            return openBgDatabase().then(db => new Promise((resolve, reject) => {
-                const tx = db.transaction(BG_DB_STORE, 'readonly');
-                const r = tx.objectStore(BG_DB_STORE).get(BG_DB_KEY);
-                r.onsuccess = function () { db.close(); resolve(r.result || null); };
-                r.onerror = function () { db.close(); reject(r.error); };
-            }));
-        }
-
-        function deleteBgFromDB() {
-            return openBgDatabase().then(db => new Promise((resolve) => {
-                const tx = db.transaction(BG_DB_STORE, 'readwrite');
-                tx.objectStore(BG_DB_STORE).delete(BG_DB_KEY);
-                tx.oncomplete = function () { db.close(); resolve(true); };
-                tx.onerror = function () { db.close(); resolve(false); };
-                tx.onabort = function () { db.close(); resolve(false); };
-            })).catch(() => false);
-        }
-
-        // ---------- تطبيق الخلفية ----------
-        function applyCustomBackground(dataUrl) {
-            document.body.setAttribute('data-bg', 'custom');
-
-            let styleEl = document.getElementById('custom-bg-style');
-            if (!styleEl) {
-                styleEl = document.createElement('style');
-                styleEl.id = 'custom-bg-style';
-                document.head.appendChild(styleEl);
-            }
-            styleEl.textContent = `body[data-bg="custom"] { background: url("${dataUrl}") center center / cover no-repeat fixed !important; background-attachment: fixed !important; }`;
-
-            document.querySelectorAll('[data-bg-option]').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            const uploadBtn = document.getElementById('upload-bg-btn');
-            if (uploadBtn) uploadBtn.classList.add('active');
-
-            const removeBtn = document.getElementById('remove-bg-btn');
-            if (removeBtn) removeBtn.style.display = 'flex';
-
-            try { localStorage.setItem(BG_MODE_KEY, 'custom'); } catch (e) {}
-        }
-
         function setBackground(bgName) {
             document.body.setAttribute('data-bg', bgName);
-
-            document.querySelectorAll('[data-bg-option]').forEach(btn => {
-                const opt = btn.getAttribute('data-bg-option');
-                btn.classList.toggle('active', opt === bgName);
-            });
-
-            const removeBtn = document.getElementById('remove-bg-btn');
-            if (removeBtn && bgName === 'default') {
-                removeBtn.style.display = 'none';
-            }
-
-            try { localStorage.setItem(BG_MODE_KEY, bgName); } catch (e) {}
-        }
-
-        function triggerBgUpload() {
-            const input = document.getElementById('bg-upload-input');
-            if (input) input.click();
-        }
-
-        function handleBgUpload(event) {
-            const file = event.target.files && event.target.files[0];
-            if (!file) return;
-
-            if (!file.type.startsWith('image/')) {
-                alert('الرجاء اختيار صورة صحيحة');
-                event.target.value = '';
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const img = new Image();
-                img.onload = function () {
-                    const canvas = document.createElement('canvas');
-                    let w = img.width, h = img.height;
-                    const maxDim = 1600;
-                    if (w > maxDim || h > maxDim) {
-                        if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
-                        else { w = Math.round(w * maxDim / h); h = maxDim; }
-                    }
-                    canvas.width = w;
-                    canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, w, h);
-
-                    let dataUrl;
-                    try {
-                        dataUrl = canvas.toDataURL('image/jpeg', 0.82);
-                    } catch (err) {
-                        alert('تعذر معالجة الصورة، حاول مرة أخرى');
-                        return;
-                    }
-
-                    // ★ تطبيق الصورة فوراً على الواجهة ★
-                    applyCustomBackground(dataUrl);
-
-                    // ★ حفظ دائم في IndexedDB (يتحمل الصور الكبيرة) ★
-                    saveBgToDB(dataUrl).catch(() => {});
-
-                    // ★ نسخة سريعة في localStorage (إن سمحت المساحة) ★
-                    try {
-                        localStorage.setItem(BG_LS_KEY, dataUrl);
-                    } catch (err) {
-                        try { localStorage.removeItem(BG_LS_KEY); } catch (e2) {}
-                    }
-                };
-                img.onerror = function () {
-                    alert('تعذر قراءة الصورة');
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-
-            event.target.value = '';
-        }
-
-        function removeCustomBg() {
-            try { localStorage.removeItem(BG_LS_KEY); } catch (e) {}
-            deleteBgFromDB();
-
-            const styleEl = document.getElementById('custom-bg-style');
-            if (styleEl) styleEl.remove();
-
-            setBackground('default');
-        }
-
-        // ★ استرجاع الخلفية المحفوظة عند فتح التطبيق ★
-        async function restoreBackground() {
-            let savedBg = null;
-            let mode = null;
-
-            try {
-                mode = localStorage.getItem(BG_MODE_KEY);
-                savedBg = localStorage.getItem(BG_LS_KEY);
-            } catch (e) {}
-
-            if (!savedBg && mode === 'custom') {
-                try { savedBg = await loadBgFromDB(); } catch (e) { savedBg = null; }
-            }
-
-            if (savedBg) {
-                applyCustomBackground(savedBg);
-                try { localStorage.setItem(BG_LS_KEY, savedBg); } catch (e) {}
-                return;
-            }
-
-            setBackground('default');
+            localStorage.setItem('app-bg', bgName);
         }
 
         function setLanguage(lang) {
@@ -3811,7 +3455,7 @@
                 filterChannels();
             }
 
-            try { localStorage.setItem('app-lang', lang); } catch (e) {}
+            localStorage.setItem('app-lang', lang);
         }
 
         document.addEventListener('keydown', function(e) {
@@ -3903,10 +3547,10 @@
                 }
             }
 
-            if (activeElement && (activeElement.classList.contains('theme-btn') || activeElement.classList.contains('bg-btn'))) {
+            if (activeElement && activeElement.classList.contains('theme-btn')) {
                 const parent = activeElement.parentElement;
                 if (!parent) return;
-                const items = Array.from(parent.querySelectorAll('.theme-btn, .bg-btn')).filter(el => el.style.display !== 'none');
+                const items = Array.from(parent.querySelectorAll('.theme-btn'));
                 const idx = items.indexOf(activeElement);
                 if (idx === -1) return;
                 if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
@@ -3929,10 +3573,8 @@
             const savedLang = localStorage.getItem('app-lang') || 'ar';
 
             setTheme(savedTheme);
+            setBackground('default');
             setLanguage(savedLang);
-
-            // ★ استرجاع خلفية المستخدم المحفوظة (من localStorage أو IndexedDB) ★
-            await restoreBackground();
 
             playerVideo = document.getElementById('channelVideo');
             updateMuteIcon();
