@@ -2069,6 +2069,89 @@
         let currentSeasonKey = null;
 
         // ============================================================
+        //  ★ إصلاح زر الرجوع - نظام إدارة حالة الهيستوري ★
+        //  يمنع زر الرجوع من إخراج المستخدم من التطبيق عند إغلاق
+        //  المشغل أو صفحة المسلسل
+        // ============================================================
+        let __playerHistoryPushed = false;
+        let __seriesHistoryPushed = false;
+
+        function __pushPlayerHistory() {
+            if (__playerHistoryPushed) return;
+            try {
+                history.pushState({ __app: 'player', ts: Date.now() }, '');
+                __playerHistoryPushed = true;
+            } catch(e) {}
+        }
+
+        function __popPlayerHistory(skip) {
+            if (!__playerHistoryPushed) return;
+            __playerHistoryPushed = false;
+            if (skip) return;
+            try { history.back(); } catch(e) {}
+        }
+
+        function __pushSeriesHistory() {
+            if (__seriesHistoryPushed) return;
+            try {
+                history.pushState({ __app: 'series', ts: Date.now() }, '');
+                __seriesHistoryPushed = true;
+            } catch(e) {}
+        }
+
+        function __popSeriesHistory(skip) {
+            if (!__seriesHistoryPushed) return;
+            __seriesHistoryPushed = false;
+            if (skip) return;
+            try { history.back(); } catch(e) {}
+        }
+
+        function __handleHardwareBack() {
+            const overlay = document.getElementById('player-overlay');
+            if (overlay && overlay.classList.contains('active')) {
+                closePlayer(true);
+                return true;
+            }
+            const seriesView = document.getElementById('series-info-view');
+            if (seriesView && seriesView.classList.contains('active')) {
+                closeSeriesView(true);
+                return true;
+            }
+            const searchBar = document.getElementById('search-bar');
+            if (searchBar && searchBar.classList.contains('active')) {
+                toggleSearch(false);
+                return true;
+            }
+            return false;
+        }
+
+        // معالج زر الرجوع عبر History API (يعمل على معظم المتصفحات)
+        window.addEventListener('popstate', function() {
+            __handleHardwareBack();
+        });
+
+        // معالج زر الرجوع لأجهزة أندرويد (Cordova / Capacitor)
+        document.addEventListener('backbutton', function(e) {
+            if (e && e.preventDefault) e.preventDefault();
+            const handled = __handleHardwareBack();
+            if (!handled) {
+                if (navigator.app && navigator.app.exitApp) {
+                    navigator.app.exitApp();
+                }
+            }
+        }, false);
+
+        // معالج زر الرجوع لشاشات تلفزيون سامسونج (Tizen)
+        window.addEventListener('tizenhwkey', function(e) {
+            if (e && e.keyName === 'back') {
+                const handled = __handleHardwareBack();
+                if (!handled && window.tizen && tizen.application) {
+                    try { tizen.application.getCurrentApplication().exit(); } catch(err) {}
+                }
+            }
+        });
+
+        // ============================================================
         //  ★ أدوات الوقت ★
         // ============================================================
         function formatTime(seconds) {
@@ -2504,6 +2587,9 @@
             mainView.style.display = 'none';
             infoView.classList.add('active');
 
+            // ★ إضافة حالة للهيستوري لمنع الخروج من التطبيق بزر الرجوع
+            __pushSeriesHistory();
+
             document.getElementById('series-name').textContent = series.name || '';
             document.getElementById('series-poster').src = series.cover || series.stream_icon || 'https://placehold.co/300x450/161926/229ED9?text=' + encodeURIComponent(series.name || '');
             document.getElementById('series-meta').innerHTML = '';
@@ -2665,12 +2751,15 @@
             });
         }
 
-        function closeSeriesView() {
+        function closeSeriesView(fromBack) {
             document.getElementById('series-info-view').classList.remove('active');
             document.getElementById('vod-main-view').style.display = 'block';
             currentSeriesData = null;
             currentSeasons = [];
             currentSeasonKey = null;
+
+            // ★ إزالة حالة الهيستوري
+            __popSeriesHistory(fromBack === true);
         }
 
         function switchVodTab(tab) {
@@ -2824,9 +2913,14 @@
                 if (playerVideo.videoWidth === 0 || playerVideo.videoHeight === 0) {
                     fallbackToTs();
                 }
-            }, 3500);
+            }, 3000);
         }
 
+        // ============================================================
+        //  ★★★ إنشاء HLS مع إصلاح مشكلة الشاشة السوداء ★★★
+        //  السبب: Hls.js أحياناً يختار مستوى صوتي (audio-only) فقط
+        //  الحل: فلترة المستويات واختيار مستوى فيه فيديو
+        // ============================================================
         function createHls(u) {
             if (!window.Hls || !Hls.isSupported()) { onFatalFailover(); return; }
             hlsInstance = new Hls({
@@ -2835,20 +2929,55 @@
                 backBufferLength: 30,
                 maxBufferLength: 60,
                 maxMaxBufferLength: 90,
-                manifestLoadingTimeOut: 8000,
-                manifestLoadingMaxRetry: 2,
-                levelLoadingTimeOut: 8000,
-                levelLoadingMaxRetry: 2,
-                fragLoadingTimeOut: 12000,
-                fragLoadingMaxRetry: 3,
+                manifestLoadingTimeOut: 10000,
+                manifestLoadingMaxRetry: 3,
+                levelLoadingTimeOut: 10000,
+                levelLoadingMaxRetry: 3,
+                fragLoadingTimeOut: 15000,
+                fragLoadingMaxRetry: 4,
                 startLevel: -1,
-                abrEwmaDefaultEstimate: 1000000,
-                capLevelToPlayerSize: true,
-                startFragPrefetch: true
+                abrEwmaDefaultEstimate: 1500000,
+                // ★ تغيير مهم: تعطيل تقييد الجودة بحجم المشغل
+                // هذا كان يجعل HLS يختار مستوى صوتي فقط في بعض الأحيان
+                capLevelToPlayerSize: false,
+                startFragPrefetch: true,
+                testBandwidth: true,
+                progressive: false
             });
             hlsInstance.loadSource(u);
             hlsInstance.attachMedia(playerVideo);
-            hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+            hlsInstance.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
+                // ★ إصلاح الشاشة السوداء: فرض مستوى يحتوي على فيديو
+                try {
+                    const levels = (data && data.levels) || hlsInstance.levels || [];
+                    if (levels.length > 1) {
+                        let bestVideoIdx = -1;
+                        let bestHeight = -1;
+                        for (let i = 0; i < levels.length; i++) {
+                            const lv = levels[i];
+                            const codecs = (lv.attrs && lv.attrs.CODECS) || '';
+                            const hasVideoCodec = !!(lv.videoCodec && lv.videoCodec !== 'undefined');
+                            const hasAvcInCodecs = /avc|hvc|hev|vp0|vp8|vp9|av01|dvh/i.test(codecs);
+                            const hasDims = !!(lv.width && lv.height && lv.width > 0 && lv.height > 0);
+                            const hasVideo = hasVideoCodec || hasAvcInCodecs || hasDims;
+                            if (hasVideo) {
+                                const h = lv.height || 0;
+                                if (h > bestHeight) {
+                                    bestHeight = h;
+                                    bestVideoIdx = i;
+                                }
+                            }
+                        }
+                        if (bestVideoIdx >= 0) {
+                            // فرض التبديل الفوري إلى مستوى الفيديو
+                            try {
+                                hlsInstance.currentLevel = bestVideoIdx;
+                            } catch(e) {}
+                        }
+                    }
+                } catch(err) {
+                    console.warn('[HLS] Level filter error:', err);
+                }
                 updateQualityButtonState();
                 tryPlayVideo();
                 scheduleAudioOnlyCheck();
@@ -3022,6 +3151,9 @@
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
+            // ★ إضافة حالة للهيستوري لمنع الخروج من التطبيق بزر الرجوع
+            __pushPlayerHistory();
+
             if (progressContainer) {
                 if (isVodPlaying) {
                     progressContainer.classList.add('vod-active');
@@ -3059,7 +3191,7 @@
             attemptPlay();
         }
 
-        function closePlayer() {
+        function closePlayer(fromBack) {
             clearTimeout(idleTimer);
             clearTimeout(loaderTimeout);
             clearTimeout(audioOnlyTimer);
@@ -3082,6 +3214,9 @@
             triedTsFallback = false;
             isVodPlaying = false;
             isSeeking = false;
+
+            // ★ إزالة حالة الهيستوري (بدون استدعاء history.back إذا كان الزر نفسه)
+            __popPlayerHistory(fromBack === true);
 
             if (document.fullscreenElement || document.webkitFullscreenElement) {
                 (document.exitFullscreen || document.webkitExitFullscreen || function(){}).call(document);
@@ -3395,7 +3530,7 @@
         }
 
         // ============================================================
-        //  ★ خلفية التطبيق (الخلفية ثابتة من الصورة) ★
+        //  ★ خلفية التطبيق ★
         // ============================================================
         function setBackground(bgName) {
             document.body.setAttribute('data-bg', bgName);
@@ -3571,6 +3706,11 @@
         window.addEventListener('DOMContentLoaded', async () => {
             const savedTheme = localStorage.getItem('app-theme') || 'dark';
             const savedLang = localStorage.getItem('app-lang') || 'ar';
+
+            // ★ تهيئة حالة الهيستوري الأساسية
+            try {
+                history.replaceState({ __app: 'root' }, '');
+            } catch(e) {}
 
             setTheme(savedTheme);
             setBackground('default');
