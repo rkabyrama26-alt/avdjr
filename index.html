@@ -1760,6 +1760,26 @@
 </head>
 <body data-bg="default">
 
+    <!-- ★★★ استرجاع خلفية المستخدم المحفوظة فوراً قبل رسم أي شيء ★★★ -->
+    <script>
+        (function () {
+            try {
+                var mode = localStorage.getItem('app-bg');
+                var savedImg = localStorage.getItem('app-custom-bg');
+                if (mode === 'custom') {
+                    // نخفي الخلفية الافتراضية فوراً لمنع أي تغيير أو وميض
+                    document.body.setAttribute('data-bg', 'custom');
+                    if (savedImg) {
+                        var st = document.createElement('style');
+                        st.id = 'custom-bg-style';
+                        st.textContent = 'body[data-bg="custom"]{background:url("' + savedImg + '") center center / cover no-repeat fixed !important;background-attachment:fixed !important;}';
+                        document.head.appendChild(st);
+                    }
+                }
+            } catch (e) {}
+        })();
+    </script>
+
     <img id="bg-gif" src="https://i.supaimg.com/8dbd90c6-a960-4a23-a9e3-f3d6e927692e/6c8245ba-17a7-4fcd-a40f-d202838cb798.gif" alt="خلفية متحركة" />
     <div class="gif-overlay"></div>
 
@@ -3545,84 +3565,65 @@
                 btn.classList.toggle('active', opt === themeName);
             });
 
-            localStorage.setItem('app-theme', themeName);
+            try { localStorage.setItem('app-theme', themeName); } catch(e) {}
         }
 
         // ============================================================
-        //  ★ خلفية التطبيق ★
+        //  ★ خلفية التطبيق (حفظ دائم للصورة) ★
         // ============================================================
-        function setBackground(bgName) {
-            document.body.setAttribute('data-bg', bgName);
+        const BG_MODE_KEY = 'app-bg';            // 'default' أو 'custom'
+        const BG_LS_KEY   = 'app-custom-bg';     // نسخة سريعة (Base64)
+        const BG_DB_NAME  = 'appBackgroundDB';   // قاعدة بيانات IndexedDB
+        const BG_DB_STORE = 'backgrounds';
+        const BG_DB_KEY   = 'custom-background';
 
-            document.querySelectorAll('[data-bg-option]').forEach(btn => {
-                const opt = btn.getAttribute('data-bg-option');
-                btn.classList.toggle('active', opt === bgName);
+        // ---------- أدوات IndexedDB ----------
+        function openBgDatabase() {
+            return new Promise((resolve, reject) => {
+                if (!window.indexedDB) { reject(new Error('IndexedDB not supported')); return; }
+                let req;
+                try { req = indexedDB.open(BG_DB_NAME, 1); } catch (e) { reject(e); return; }
+                req.onupgradeneeded = function () {
+                    const db = req.result;
+                    if (!db.objectStoreNames.contains(BG_DB_STORE)) {
+                        db.createObjectStore(BG_DB_STORE);
+                    }
+                };
+                req.onsuccess = function () { resolve(req.result); };
+                req.onerror = function () { reject(req.error); };
             });
-
-            const removeBtn = document.getElementById('remove-bg-btn');
-            if (removeBtn && bgName === 'default') {
-                removeBtn.style.display = 'none';
-            }
-
-            localStorage.setItem('app-bg', bgName);
         }
 
-        function triggerBgUpload() {
-            const input = document.getElementById('bg-upload-input');
-            if (input) input.click();
+        function saveBgToDB(dataUrl) {
+            return openBgDatabase().then(db => new Promise((resolve, reject) => {
+                const tx = db.transaction(BG_DB_STORE, 'readwrite');
+                tx.objectStore(BG_DB_STORE).put(dataUrl, BG_DB_KEY);
+                tx.oncomplete = function () { db.close(); resolve(true); };
+                tx.onerror = function () { db.close(); reject(tx.error); };
+                tx.onabort = function () { db.close(); reject(tx.error); };
+            }));
         }
 
-        function handleBgUpload(event) {
-            const file = event.target.files && event.target.files[0];
-            if (!file) return;
-
-            if (!file.type.startsWith('image/')) {
-                alert('الرجاء اختيار صورة صحيحة');
-                event.target.value = '';
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    let w = img.width, h = img.height;
-                    const maxDim = 1920;
-                    if (w > maxDim || h > maxDim) {
-                        if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
-                        else { w = Math.round(w * maxDim / h); h = maxDim; }
-                    }
-                    canvas.width = w;
-                    canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, w, h);
-
-                    let dataUrl;
-                    try {
-                        dataUrl = canvas.toDataURL('image/jpeg', 0.85);
-                    } catch(err) {
-                        alert('تعذر معالجة الصورة، حاول مرة أخرى');
-                        return;
-                    }
-
-                    try {
-                        localStorage.setItem('app-custom-bg', dataUrl);
-                        applyCustomBackground(dataUrl);
-                    } catch(err) {
-                        alert('حجم الصورة كبير جداً على الذاكرة، جرّب صورة أصغر');
-                    }
-                };
-                img.onerror = function() {
-                    alert('تعذر قراءة الصورة');
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-
-            event.target.value = '';
+        function loadBgFromDB() {
+            return openBgDatabase().then(db => new Promise((resolve, reject) => {
+                const tx = db.transaction(BG_DB_STORE, 'readonly');
+                const r = tx.objectStore(BG_DB_STORE).get(BG_DB_KEY);
+                r.onsuccess = function () { db.close(); resolve(r.result || null); };
+                r.onerror = function () { db.close(); reject(r.error); };
+            }));
         }
 
+        function deleteBgFromDB() {
+            return openBgDatabase().then(db => new Promise((resolve) => {
+                const tx = db.transaction(BG_DB_STORE, 'readwrite');
+                tx.objectStore(BG_DB_STORE).delete(BG_DB_KEY);
+                tx.oncomplete = function () { db.close(); resolve(true); };
+                tx.onerror = function () { db.close(); resolve(false); };
+                tx.onabort = function () { db.close(); resolve(false); };
+            })).catch(() => false);
+        }
+
+        // ---------- تطبيق الخلفية ----------
         function applyCustomBackground(dataUrl) {
             document.body.setAttribute('data-bg', 'custom');
 
@@ -3643,13 +3644,117 @@
             const removeBtn = document.getElementById('remove-bg-btn');
             if (removeBtn) removeBtn.style.display = 'flex';
 
-            localStorage.setItem('app-bg', 'custom');
+            try { localStorage.setItem(BG_MODE_KEY, 'custom'); } catch (e) {}
+        }
+
+        function setBackground(bgName) {
+            document.body.setAttribute('data-bg', bgName);
+
+            document.querySelectorAll('[data-bg-option]').forEach(btn => {
+                const opt = btn.getAttribute('data-bg-option');
+                btn.classList.toggle('active', opt === bgName);
+            });
+
+            const removeBtn = document.getElementById('remove-bg-btn');
+            if (removeBtn && bgName === 'default') {
+                removeBtn.style.display = 'none';
+            }
+
+            try { localStorage.setItem(BG_MODE_KEY, bgName); } catch (e) {}
+        }
+
+        function triggerBgUpload() {
+            const input = document.getElementById('bg-upload-input');
+            if (input) input.click();
+        }
+
+        function handleBgUpload(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                alert('الرجاء اختيار صورة صحيحة');
+                event.target.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    let w = img.width, h = img.height;
+                    const maxDim = 1600;
+                    if (w > maxDim || h > maxDim) {
+                        if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+                        else { w = Math.round(w * maxDim / h); h = maxDim; }
+                    }
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+
+                    let dataUrl;
+                    try {
+                        dataUrl = canvas.toDataURL('image/jpeg', 0.82);
+                    } catch (err) {
+                        alert('تعذر معالجة الصورة، حاول مرة أخرى');
+                        return;
+                    }
+
+                    // ★ تطبيق الصورة فوراً على الواجهة ★
+                    applyCustomBackground(dataUrl);
+
+                    // ★ حفظ دائم في IndexedDB (يتحمل الصور الكبيرة) ★
+                    saveBgToDB(dataUrl).catch(() => {});
+
+                    // ★ نسخة سريعة في localStorage (إن سمحت المساحة) ★
+                    try {
+                        localStorage.setItem(BG_LS_KEY, dataUrl);
+                    } catch (err) {
+                        try { localStorage.removeItem(BG_LS_KEY); } catch (e2) {}
+                    }
+                };
+                img.onerror = function () {
+                    alert('تعذر قراءة الصورة');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+
+            event.target.value = '';
         }
 
         function removeCustomBg() {
-            localStorage.removeItem('app-custom-bg');
+            try { localStorage.removeItem(BG_LS_KEY); } catch (e) {}
+            deleteBgFromDB();
+
             const styleEl = document.getElementById('custom-bg-style');
             if (styleEl) styleEl.remove();
+
+            setBackground('default');
+        }
+
+        // ★ استرجاع الخلفية المحفوظة عند فتح التطبيق ★
+        async function restoreBackground() {
+            let savedBg = null;
+            let mode = null;
+
+            try {
+                mode = localStorage.getItem(BG_MODE_KEY);
+                savedBg = localStorage.getItem(BG_LS_KEY);
+            } catch (e) {}
+
+            if (!savedBg && mode === 'custom') {
+                try { savedBg = await loadBgFromDB(); } catch (e) { savedBg = null; }
+            }
+
+            if (savedBg) {
+                applyCustomBackground(savedBg);
+                try { localStorage.setItem(BG_LS_KEY, savedBg); } catch (e) {}
+                return;
+            }
+
             setBackground('default');
         }
 
@@ -3706,7 +3811,7 @@
                 filterChannels();
             }
 
-            localStorage.setItem('app-lang', lang);
+            try { localStorage.setItem('app-lang', lang); } catch (e) {}
         }
 
         document.addEventListener('keydown', function(e) {
@@ -3821,16 +3926,13 @@
 
         window.addEventListener('DOMContentLoaded', async () => {
             const savedTheme = localStorage.getItem('app-theme') || 'dark';
-            const customBg = localStorage.getItem('app-custom-bg');
             const savedLang = localStorage.getItem('app-lang') || 'ar';
 
             setTheme(savedTheme);
-            if (customBg) {
-                applyCustomBackground(customBg);
-            } else {
-                setBackground('default');
-            }
             setLanguage(savedLang);
+
+            // ★ استرجاع خلفية المستخدم المحفوظة (من localStorage أو IndexedDB) ★
+            await restoreBackground();
 
             playerVideo = document.getElementById('channelVideo');
             updateMuteIcon();
