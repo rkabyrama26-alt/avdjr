@@ -56,17 +56,18 @@
         }
         [data-theme="royal"] .channel-card,
         [data-theme="royal"] .vod-card {
-            background: rgba(45, 27, 78, 0.95);
-            box-shadow: 0 3px 10px rgba(76, 29, 149, 0.35);
+            background: #221138;
         }
         [data-theme="royal"] .settings-card,
-        [data-theme="royal"] .vod-tabs {
-            background: rgba(45, 27, 78, 0.95);
-            border: 1px solid rgba(168, 85, 247, 0.12);
+        [data-theme="royal"] .vod-tabs,
+        [data-theme="royal"] .series-header,
+        [data-theme="royal"] .episode-card {
+            background: #221138;
+            border: 1px solid rgba(168, 85, 247, 0.18);
         }
         [data-theme="royal"] nav.bottom-nav {
-            background: rgba(18, 7, 31, 0.96);
-            border: 1px solid rgba(168, 85, 247, 0.12);
+            background: #12071f;
+            border: 1px solid rgba(168, 85, 247, 0.18);
         }
         [data-theme="royal"] .search-trigger-btn {
             background: rgba(168, 85, 247, 0.18);
@@ -87,17 +88,18 @@
         }
         [data-theme="ocean"] .channel-card,
         [data-theme="ocean"] .vod-card {
-            background: rgba(15, 41, 66, 0.95);
-            box-shadow: 0 3px 10px rgba(12, 74, 110, 0.35);
+            background: #0a1f33;
         }
         [data-theme="ocean"] .settings-card,
-        [data-theme="ocean"] .vod-tabs {
-            background: rgba(15, 41, 66, 0.95);
-            border: 1px solid rgba(56, 189, 248, 0.12);
+        [data-theme="ocean"] .vod-tabs,
+        [data-theme="ocean"] .series-header,
+        [data-theme="ocean"] .episode-card {
+            background: #0a1f33;
+            border: 1px solid rgba(56, 189, 248, 0.18);
         }
         [data-theme="ocean"] nav.bottom-nav {
-            background: rgba(6, 18, 32, 0.96);
-            border: 1px solid rgba(56, 189, 248, 0.12);
+            background: #061220;
+            border: 1px solid rgba(56, 189, 248, 0.18);
         }
         [data-theme="ocean"] .search-trigger-btn {
             background: rgba(56, 189, 248, 0.18);
@@ -118,17 +120,18 @@
         }
         [data-theme="emerald"] .channel-card,
         [data-theme="emerald"] .vod-card {
-            background: rgba(20, 53, 44, 0.95);
-            box-shadow: 0 3px 10px rgba(6, 95, 70, 0.35);
+            background: #0c2a22;
         }
         [data-theme="emerald"] .settings-card,
-        [data-theme="emerald"] .vod-tabs {
-            background: rgba(20, 53, 44, 0.95);
-            border: 1px solid rgba(16, 185, 129, 0.12);
+        [data-theme="emerald"] .vod-tabs,
+        [data-theme="emerald"] .series-header,
+        [data-theme="emerald"] .episode-card {
+            background: #0c2a22;
+            border: 1px solid rgba(16, 185, 129, 0.18);
         }
         [data-theme="emerald"] nav.bottom-nav {
-            background: rgba(6, 20, 16, 0.96);
-            border: 1px solid rgba(16, 185, 129, 0.12);
+            background: #061410;
+            border: 1px solid rgba(16, 185, 129, 0.18);
         }
         [data-theme="emerald"] .search-trigger-btn {
             background: rgba(16, 185, 129, 0.18);
@@ -181,7 +184,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.55);
             z-index: -1;
             pointer-events: none;
         }
@@ -202,7 +205,7 @@
         }
 
         .search-trigger-btn {
-            background: rgba(255, 255, 255, 0.12);
+            background: #1e2233;
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-primary);
             width: 44px;
@@ -212,22 +215,19 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.15s ease, transform 0.15s ease;
             flex-shrink: 0;
+            outline: 2px solid transparent;
         }
 
         [data-theme="light"] .search-trigger-btn {
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
         }
 
-        .search-trigger-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
+        .search-trigger-btn:focus,
         .search-trigger-btn:focus-visible {
             outline: 3px solid #229ED9;
-            outline-offset: 3px;
+            outline-offset: 2px;
         }
 
         .search-trigger-btn svg {
@@ -258,18 +258,12 @@
             min-width: 280px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
-            animation: serverModalIn 0.2s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
         }
 
         [data-theme="light"] .server-modal {
             background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        @keyframes serverModalIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         .server-modal h3 {
@@ -293,10 +287,10 @@
             cursor: pointer;
             font-family: inherit;
             color: var(--text-primary);
-            transition: background 0.15s ease, border-color 0.15s ease;
             text-align: start;
             font-size: 1rem;
             font-weight: 800;
+            outline: 2px solid transparent;
         }
 
         [data-theme="light"] .server-option {
@@ -307,11 +301,7 @@
             margin-bottom: 0;
         }
 
-        .server-option:hover {
-            background: rgba(34, 158, 217, 0.15);
-            border-color: rgba(34, 158, 217, 0.4);
-        }
-
+        .server-option:focus,
         .server-option:focus-visible {
             outline: 3px solid #229ED9;
             outline-offset: 2px;
@@ -326,7 +316,7 @@
             width: 44px;
             height: 44px;
             border-radius: 13px;
-            background: linear-gradient(135deg, #229ED9, #007aff);
+            background: #229ED9;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -340,7 +330,7 @@
         }
 
         .server-option.active .server-option-icon {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #10b981;
         }
 
         .server-option-text {
@@ -383,13 +373,12 @@
             width: 46px;
             height: 46px;
             border-radius: 13px;
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #10b981;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
             flex-shrink: 0;
-            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
         }
 
         .server-settings-current-icon svg {
@@ -431,29 +420,18 @@
             font-weight: 800;
         }
 
-        [data-theme="light"] .server-settings-current-badge {
-            background: rgba(16, 185, 129, 0.15);
-            color: #059669;
-        }
-
         .server-settings-current-badge::before {
             content: '';
             width: 6px;
             height: 6px;
             border-radius: 50%;
             background: #10b981;
-            animation: pulseDot 1.6s ease-in-out infinite;
-        }
-
-        @keyframes pulseDot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
 
         .server-settings-switch-btn {
             width: 100%;
             padding: 13px 18px;
-            background: linear-gradient(135deg, #229ED9, #007aff);
+            background: #229ED9;
             border: none;
             border-radius: 14px;
             color: #fff;
@@ -465,18 +443,10 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: background 0.15s ease;
-            outline: none;
+            outline: 2px solid transparent;
         }
 
-        .server-settings-switch-btn:hover {
-            background: linear-gradient(135deg, #1a8cbf, #0066cc);
-        }
-
-        .server-settings-switch-btn:active {
-            background: linear-gradient(135deg, #157299, #0055aa);
-        }
-
+        .server-settings-switch-btn:focus,
         .server-settings-switch-btn:focus-visible {
             outline: 3px solid #229ED9;
             outline-offset: 3px;
@@ -499,7 +469,6 @@
             padding: 0 20px;
             gap: 10px;
             transform: translateY(-100%);
-            transition: transform 0.2s ease;
             z-index: 101;
         }
 
@@ -510,12 +479,16 @@
         .search-input {
             flex: 1;
             background: var(--card-bg);
-            border: none;
+            border: 2px solid transparent;
             padding: 10px 18px;
             border-radius: 12px;
             color: var(--text-primary);
             font-size: 1rem;
             outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #229ED9;
         }
 
         .close-search-btn {
@@ -524,6 +497,13 @@
             color: var(--text-secondary);
             cursor: pointer;
             padding: 5px;
+            outline: none;
+        }
+
+        .close-search-btn:focus,
+        .close-search-btn:focus-visible {
+            outline: 2px solid #229ED9;
+            border-radius: 6px;
         }
 
         .close-search-btn svg {
@@ -567,7 +547,6 @@
             align-items: center;
             gap: 10px;
             color: var(--text-primary);
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .section-title svg {
@@ -580,6 +559,11 @@
             fill: #fbbf24;
         }
 
+        .channel-group-block {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 260px;
+        }
+
         .horizontal-scroll-container {
             display: flex;
             flex-wrap: nowrap;
@@ -587,14 +571,12 @@
             overflow-x: auto;
             padding: 8px 5px 18px 5px;
             -webkit-overflow-scrolling: touch;
-            scroll-snap-type: x mandatory;
         }
 
         .horizontal-scroll-container::-webkit-scrollbar { display: none; }
         .horizontal-scroll-container { -ms-overflow-style: none; scrollbar-width: none; }
 
         .horizontal-scroll-container .channel-card {
-            scroll-snap-align: start;
             flex: 0 0 155px;
             min-width: 140px;
             max-width: 190px;
@@ -621,6 +603,7 @@
             color: var(--text-secondary);
             width: 100%;
             font-size: 1rem;
+            grid-column: 1 / -1;
         }
 
         #favorites-grid {
@@ -665,49 +648,37 @@
             opacity: 0.85;
         }
 
-        .favorites-empty .fav-empty-hint .star-icon {
-            color: #fbbf24;
-            font-size: 1rem;
-        }
-
         .channel-card {
-            border-radius: 18px;
-            background: rgba(22, 25, 38, 0.95);
-            border: 2px solid transparent;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
-            transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+            border-radius: 14px;
+            background: #161926;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
             outline: 3px solid transparent;
-            outline-offset: 4px;
+            outline-offset: 2px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            contain: layout style;
         }
 
         [data-theme="light"] .channel-card {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid transparent;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+            background: #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
         }
 
-        .channel-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
-            border-color: rgba(34, 158, 217, 0.4);
-        }
-
-        .channel-card:focus, .channel-card:focus-visible {
+        .channel-card:focus,
+        .channel-card:focus-visible {
             outline: 4px solid #229ED9;
-            outline-offset: 5px;
-            border-color: #229ED9;
-            transform: translateY(-2px);
+            outline-offset: 2px;
+            box-shadow: 0 4px 14px rgba(34, 158, 217, 0.6);
         }
 
         .card-img-box {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: rgba(0, 0, 0, 0.2);
+            background: #0d0f17;
             overflow: hidden;
-            border-radius: 18px 18px 0 0;
+            border-radius: 14px 14px 0 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -748,18 +719,11 @@
             justify-content: center;
             cursor: pointer;
             z-index: 10;
-            transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
             padding: 0;
             outline: none;
-            opacity: 0.9;
         }
 
-        .fav-star-btn:hover {
-            background: rgba(251, 191, 36, 0.6);
-            border-color: rgba(251, 191, 36, 0.85);
-            opacity: 1;
-        }
-
+        .fav-star-btn:focus,
         .fav-star-btn:focus-visible {
             outline: 2px solid #229ED9;
             outline-offset: 2px;
@@ -778,10 +742,9 @@
         }
 
         .fav-star-btn.active {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            background: #fbbf24;
             border-color: #fbbf24;
             color: #fff;
-            opacity: 1;
         }
 
         .fav-star-btn.active svg {
@@ -789,29 +752,20 @@
             stroke: #fff;
         }
 
-        .fav-star-btn.popped svg {
-            animation: starPop 0.3s ease;
-        }
-
-        @keyframes starPop {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.35); }
-        }
-
         .vod-tabs {
             display: flex;
             gap: 6px;
             margin-bottom: 20px;
-            background: rgba(22, 25, 38, 0.95);
+            background: #161926;
             padding: 5px;
             border-radius: 16px;
             width: fit-content;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
         }
 
         [data-theme="light"] .vod-tabs {
-            background: rgba(255, 255, 255, 0.95);
+            background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
@@ -825,27 +779,22 @@
             font-size: 0.85rem;
             border-radius: 12px;
             cursor: pointer;
-            transition: background 0.15s ease, color 0.15s ease;
             display: flex;
             align-items: center;
             gap: 8px;
-            outline: none;
+            outline: 2px solid transparent;
         }
 
         .vod-tab svg { width: 17px; height: 17px; }
 
-        .vod-tab:hover {
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
+        .vod-tab:focus,
         .vod-tab:focus-visible {
             outline: 3px solid #229ED9;
             outline-offset: 2px;
         }
 
         .vod-tab.active {
-            background: linear-gradient(135deg, #229ED9, #007aff);
+            background: #229ED9;
             color: #fff;
         }
 
@@ -857,33 +806,29 @@
         }
 
         .vod-card {
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             cursor: pointer;
             position: relative;
             aspect-ratio: 2 / 3;
-            background: rgba(22, 25, 38, 0.95);
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+            background: #161926;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
             outline: 3px solid transparent;
-            outline-offset: 3px;
+            outline-offset: 2px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            contain: layout style;
         }
 
         [data-theme="light"] .vod-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .vod-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
-        }
-
-        .vod-card:focus, .vod-card:focus-visible {
+        .vod-card:focus,
+        .vod-card:focus-visible {
             outline: 4px solid #229ED9;
-            outline-offset: 3px;
-            transform: translateY(-2px);
+            outline-offset: 2px;
+            box-shadow: 0 4px 14px rgba(34, 158, 217, 0.6);
         }
 
         .vod-card img {
@@ -941,7 +886,7 @@
             align-items: center;
             padding: 2px 7px;
             border-radius: 6px;
-            background: rgba(34, 158, 217, 0.85);
+            background: #229ED9;
             font-size: 0.62rem;
             font-weight: 800;
             color: #fff;
@@ -950,7 +895,7 @@
         }
 
         .vod-card-badge.series-badge {
-            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            background: #7c3aed;
         }
 
         .vod-empty {
@@ -990,6 +935,15 @@
             font-size: 0.9rem;
         }
 
+        #vod-channels-search-results {
+            margin-bottom: 18px;
+        }
+
+        #vod-channels-search-results .section-title {
+            font-size: 1.1rem;
+            margin: 5px 0 10px;
+        }
+
         #series-info-view {
             display: none;
             flex-direction: column;
@@ -1003,15 +957,15 @@
             display: flex;
             align-items: flex-start;
             gap: 20px;
-            background: rgba(22, 25, 38, 0.95);
+            background: #161926;
             border-radius: 20px;
             padding: 18px;
             border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         [data-theme="light"] .series-header {
-            background: rgba(255, 255, 255, 0.95);
+            background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
@@ -1021,7 +975,7 @@
             border-radius: 14px;
             object-fit: cover;
             flex-shrink: 0;
-            background: rgba(0,0,0,0.3);
+            background: #0d0f17;
         }
 
         .series-details {
@@ -1081,8 +1035,7 @@
             align-items: center;
             gap: 8px;
             width: fit-content;
-            transition: background 0.15s ease;
-            outline: none;
+            outline: 2px solid transparent;
         }
 
         [data-theme="light"] .series-back-btn {
@@ -1090,10 +1043,7 @@
             border: 1px solid rgba(0,0,0,0.06);
         }
 
-        .series-back-btn:hover {
-            background: rgba(34, 158, 217, 0.25);
-        }
-
+        .series-back-btn:focus,
         .series-back-btn:focus-visible {
             outline: 3px solid #229ED9;
             outline-offset: 2px;
@@ -1125,8 +1075,7 @@
             font-size: 0.82rem;
             cursor: pointer;
             white-space: nowrap;
-            transition: background 0.15s ease, color 0.15s ease;
-            outline: none;
+            outline: 2px solid transparent;
         }
 
         [data-theme="light"] .season-tab {
@@ -1134,20 +1083,16 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .season-tab:hover {
-            color: var(--text-primary);
-            background: rgba(255,255,255,0.1);
-        }
-
-        .season-tab.active {
-            background: linear-gradient(135deg, #229ED9, #007aff);
-            color: #fff;
-            border-color: transparent;
-        }
-
+        .season-tab:focus,
         .season-tab:focus-visible {
             outline: 3px solid #229ED9;
             outline-offset: 2px;
+        }
+
+        .season-tab.active {
+            background: #229ED9;
+            color: #fff;
+            border-color: transparent;
         }
 
         .episodes-grid {
@@ -1157,38 +1102,33 @@
         }
 
         .episode-card {
-            background: rgba(22, 25, 38, 0.95);
+            background: #161926;
             border-radius: 14px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.15s ease, border-color 0.15s ease;
             border: 1px solid rgba(255, 255, 255, 0.06);
             outline: 3px solid transparent;
-            outline-offset: 3px;
+            outline-offset: 2px;
             display: flex;
             flex-direction: column;
+            contain: layout style;
         }
 
         [data-theme="light"] .episode-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .episode-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(34, 158, 217, 0.35);
-        }
-
-        .episode-card:focus, .episode-card:focus-visible {
+        .episode-card:focus,
+        .episode-card:focus-visible {
             outline: 4px solid #229ED9;
-            outline-offset: 3px;
-            transform: translateY(-2px);
+            outline-offset: 2px;
         }
 
         .episode-thumb {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: rgba(0,0,0,0.35);
+            background: #0d0f17;
             overflow: hidden;
             position: relative;
             display: flex;
@@ -1221,13 +1161,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.15s ease;
             background: rgba(0,0,0,0.35);
             z-index: 1;
+            opacity: 0.85;
         }
-
-        .episode-card:hover .ep-play-icon { opacity: 1; }
 
         .episode-thumb .ep-play-icon svg {
             width: 44px;
@@ -1265,15 +1202,15 @@
         }
 
         .settings-card {
-            background: rgba(22, 25, 38, 0.95);
+            background: #161926;
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 22px;
             padding: 18px 20px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
         }
 
         [data-theme="light"] .settings-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
@@ -1312,24 +1249,16 @@
             border: 2px solid transparent;
             border-radius: 16px;
             cursor: pointer;
-            transition: background 0.15s ease, border-color 0.15s ease;
             font-family: inherit;
             color: var(--text-secondary);
-            outline: none;
+            outline: 2px solid transparent;
         }
 
         [data-theme="light"] .theme-btn {
             background: rgba(0, 0, 0, 0.03);
         }
 
-        .theme-btn:hover {
-            background: rgba(255, 255, 255, 0.07);
-        }
-
-        [data-theme="light"] .theme-btn:hover {
-            background: rgba(0, 0, 0, 0.06);
-        }
-
+        .theme-btn:focus,
         .theme-btn:focus-visible {
             outline: 3px solid #229ED9;
             outline-offset: 2px;
@@ -1382,8 +1311,7 @@
             border-radius: 16px;
             text-decoration: none;
             color: inherit;
-            transition: background 0.15s ease;
-            outline: none;
+            outline: 2px solid transparent;
         }
 
         [data-theme="light"] .contact-item {
@@ -1391,14 +1319,7 @@
             border: 1px solid rgba(0, 0, 0, 0.04);
         }
 
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        [data-theme="light"] .contact-item:hover {
-            background: rgba(0, 0, 0, 0.06);
-        }
-
+        .contact-item:focus,
         .contact-item:focus-visible {
             outline: 3px solid #229ED9;
             outline-offset: 2px;
@@ -1438,9 +1359,9 @@
             text-overflow: ellipsis;
         }
 
-        .bg-telegram { background: linear-gradient(135deg, #229ED9, #1a7fb0); }
-        .bg-youtube { background: linear-gradient(135deg, #FF0000, #c00); }
-        .bg-email { background: linear-gradient(135deg, #34a853, #1e7e34); }
+        .bg-telegram { background: #229ED9; }
+        .bg-youtube { background: #FF0000; }
+        .bg-email { background: #34a853; }
 
         .player-overlay {
             position: fixed;
@@ -1498,7 +1419,6 @@
             left: 0;
             right: 0;
             z-index: 100;
-            transition: opacity 0.25s ease;
         }
         .player-top-bar.hidden {
             opacity: 0;
@@ -1520,16 +1440,16 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.15s ease;
         }
-        .player-back-btn:hover {
-            background: rgba(0, 0, 0, 0.8);
+        .player-back-btn:focus,
+        .player-back-btn:focus-visible {
+            outline: 3px solid #229ED9;
+            outline-offset: 2px;
         }
         .player-channel-title {
             font-size: 1.1rem;
             font-weight: 700;
             color: #fff;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
             flex: 1;
             text-align: center;
             margin: 0 10px;
@@ -1548,7 +1468,6 @@
             padding: 10px 12px;
             background: rgba(0, 0, 0, 0.75);
             border-radius: 14px;
-            transition: opacity 0.25s ease;
         }
 
         .player-progress-container.vod-active {
@@ -1578,7 +1497,6 @@
             border-radius: 4px;
             position: relative;
             cursor: pointer;
-            transition: height 0.15s ease;
             touch-action: none;
         }
 
@@ -1604,7 +1522,7 @@
             left: 0;
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #229ED9, #007aff);
+            background: #229ED9;
             border-radius: 4px;
             pointer-events: none;
         }
@@ -1620,7 +1538,6 @@
             transform: translate(-50%, -50%);
             pointer-events: none;
             opacity: 0;
-            transition: opacity 0.15s ease;
         }
 
         .player-progress-bar:hover .player-progress-handle,
@@ -1641,7 +1558,6 @@
             align-items: center;
             gap: 8px;
             flex-wrap: wrap;
-            transition: opacity 0.25s ease;
         }
         .player-bottom-controls.hidden {
             opacity: 0;
@@ -1658,11 +1574,13 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background 0.15s ease;
             position: relative;
+            outline: 2px solid transparent;
         }
-        .p-ctrl:hover {
-            background: rgba(0, 0, 0, 0.85);
+        .p-ctrl:focus,
+        .p-ctrl:focus-visible {
+            outline: 3px solid #229ED9;
+            outline-offset: 2px;
         }
         .p-ctrl svg {
             width: 22px;
@@ -1695,7 +1613,6 @@
             background: #000;
             z-index: 10;
             pointer-events: none;
-            transition: opacity 0.25s ease;
         }
         .player-loading .spin {
             width: 50px;
@@ -1707,6 +1624,7 @@
         }
         .player-loading.hidden {
             opacity: 0;
+            pointer-events: none;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -1727,13 +1645,8 @@
             max-height: 60vh;
             overflow-y: auto;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
-            animation: qualityFadeIn 0.15s ease;
         }
         .player-quality-menu.active { display: flex; }
-        @keyframes qualityFadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
         .player-quality-menu::-webkit-scrollbar { width: 6px; }
         .player-quality-menu::-webkit-scrollbar-thumb {
             background: rgba(255,255,255,0.2);
@@ -1759,14 +1672,18 @@
             cursor: pointer;
             font-size: 0.88rem;
             font-weight: 700;
-            transition: background 0.15s ease;
             font-family: inherit;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
+            outline: 2px solid transparent;
         }
-        .quality-item:hover { background: rgba(34, 158, 217, 0.4); }
+        .quality-item:focus,
+        .quality-item:focus-visible {
+            outline: 3px solid #229ED9;
+            outline-offset: 2px;
+        }
         .quality-item.active {
             background: #229ED9;
             color: #fff;
@@ -1800,7 +1717,7 @@
             flex-direction: column;
             padding: 8px 6px;
             border-radius: 24px;
-            background: rgba(8, 10, 16, 0.96);
+            background: #0f1218;
             border: 1px solid rgba(255, 255, 255, 0.06);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             gap: 6px;
@@ -1809,7 +1726,7 @@
         }
 
         [data-theme="light"] nav.bottom-nav {
-            background: rgba(255, 255, 255, 0.96);
+            background: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.04);
         }
 
@@ -1826,9 +1743,8 @@
             cursor: pointer;
             flex: none;
             gap: 3px;
-            transition: background 0.15s ease, color 0.15s ease;
             width: 55px;
-            outline: 2px solid transparent;
+            outline: 3px solid transparent;
             outline-offset: 2px;
         }
 
@@ -1842,11 +1758,15 @@
         .nav-item span { font-size: 0.68rem; line-height: 1.2; }
 
         .nav-item.active {
-            background: rgba(34, 158, 217, 0.18);
+            background: rgba(34, 158, 217, 0.22);
             color: #229ED9;
         }
 
-        .nav-item:focus-visible { outline: 4px solid #229ED9; outline-offset: 5px; }
+        .nav-item:focus,
+        .nav-item:focus-visible {
+            outline: 4px solid #229ED9;
+            outline-offset: 2px;
+        }
 
         @media (min-width: 1024px) and (max-width: 1439px) {
             .horizontal-scroll-container .channel-card {
@@ -2460,11 +2380,6 @@
             }
             if (!btn) return;
 
-            btn.classList.add('popped');
-            setTimeout(() => {
-                try { btn.classList.remove('popped'); } catch(e){}
-            }, 380);
-
             const card = btn.closest('.channel-card');
             if (!card) return;
 
@@ -2524,6 +2439,8 @@
                 channels_title: "قنوات البث المباشر",
                 search_results_title: "نتائج البحث",
                 search_placeholder: "ابحث عن قناة...",
+                search_placeholder_vod: "ابحث عن فيلم أو مسلسل أو قناة...",
+                search_placeholder_fav: "ابحث في المفضلة...",
                 settings_title: "الإعدادات الرئيسية",
                 block_personalize: "تخصيص المظهر",
                 block_contact: "تواصل معنا",
@@ -2567,13 +2484,18 @@
                 vod_season: "الموسم",
                 vod_episode: "الحلقة",
                 vod_no_episodes: "لا توجد حلقات متاحة لهذا الموسم",
-                vod_error_load: "⚠️ تعذر تحميل المحتوى. حاول مرة أخرى لاحقاً."
+                vod_error_load: "⚠️ تعذر تحميل المحتوى. حاول مرة أخرى لاحقاً.",
+                search_match_channels: "قنوات مطابقة",
+                search_match_movies: "أفلام مطابقة",
+                search_match_series: "مسلسلات مطابقة"
             },
             en: {
                 app_title: "Screen Star",
                 channels_title: "Live Channels",
                 search_results_title: "Search Results",
                 search_placeholder: "Search channel...",
+                search_placeholder_vod: "Search movie, series, or channel...",
+                search_placeholder_fav: "Search favorites...",
                 settings_title: "Main Settings",
                 block_personalize: "Personalize",
                 block_contact: "Connect With Us",
@@ -2617,7 +2539,10 @@
                 vod_season: "Season",
                 vod_episode: "Episode",
                 vod_no_episodes: "No episodes available for this season",
-                vod_error_load: "⚠️ Failed to load content. Please try again later."
+                vod_error_load: "⚠️ Failed to load content. Please try again later.",
+                search_match_channels: "Matching Channels",
+                search_match_movies: "Matching Movies",
+                search_match_series: "Matching Series"
             }
         };
 
@@ -2640,7 +2565,6 @@
         let wasPlayingBeforeSeek = false;
         let progressPollTimer = null;
 
-        // ★★★ متغيرات مراقبة التوقف (Stall Watchdog) ★★★
         let stallWatchdogInterval = null;
         let lastProgressTime = 0;
         let lastRecoveryAttempt = 0;
@@ -2654,6 +2578,10 @@
         let currentSeriesData = null;
         let currentSeasons = [];
         let currentSeasonKey = null;
+
+        // ★ تخزين عناصر VOD الأصلية لتصفية سريعة
+        let vodMovieElements = [];
+        let vodSeriesElements = [];
 
         function openServerMenu() {
             const modal = document.getElementById('server-modal');
@@ -2696,6 +2624,8 @@
             vodMovies = [];
             vodSeries = [];
             vodLoadingPromise = null;
+            vodMovieElements = [];
+            vodSeriesElements = [];
 
             await reloadChannels();
             renderFavoritesSection();
@@ -3063,6 +2993,7 @@
         function renderVodMovies() {
             const grid = document.getElementById('vod-movies-grid');
             grid.innerHTML = '';
+            vodMovieElements = [];
 
             if (!vodMovies || vodMovies.length === 0) {
                 grid.innerHTML = `
@@ -3078,7 +3009,9 @@
 
             const frag = document.createDocumentFragment();
             vodMovies.forEach(m => {
-                frag.appendChild(createVodCard(m, false));
+                const el = createVodCard(m, false);
+                frag.appendChild(el);
+                vodMovieElements.push({ el, name: (m.name || '').toLowerCase() });
             });
             grid.appendChild(frag);
         }
@@ -3086,6 +3019,7 @@
         function renderVodSeries() {
             const grid = document.getElementById('vod-series-grid');
             grid.innerHTML = '';
+            vodSeriesElements = [];
 
             if (!vodSeries || vodSeries.length === 0) {
                 grid.innerHTML = `
@@ -3101,7 +3035,9 @@
 
             const frag = document.createDocumentFragment();
             vodSeries.forEach(s => {
-                frag.appendChild(createVodCard(s, true));
+                const el = createVodCard(s, true);
+                frag.appendChild(el);
+                vodSeriesElements.push({ el, name: (s.name || '').toLowerCase() });
             });
             grid.appendChild(frag);
         }
@@ -3387,6 +3323,12 @@
                 gridSeries.style.display = 'grid';
                 gridMovies.style.display = 'none';
             }
+
+            // إعادة تطبيق البحث إذا كان نشطاً
+            const searchVal = document.getElementById('search-input').value.trim();
+            if (searchVal !== '' && document.getElementById('vod').classList.contains('active')) {
+                filterInVod(searchVal.toLowerCase());
+            }
         }
 
         async function ensureVodLoaded() {
@@ -3514,8 +3456,51 @@
         }
 
         // ═══════════════════════════════════════════════════════════
-        //  مراقب التوقف (Stall Watchdog)
+        //  ★★★ إخفاء اللودر عند ظهور أول إطار فيديو فقط ★★★
         // ═══════════════════════════════════════════════════════════
+        function watchForFirstFrame(video) {
+            if (!video) return;
+
+            const tryHide = () => {
+                // تأكد أن الفيديو ليس بلا أبعاد (audio-only)
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                    hideLoader();
+                    return true;
+                }
+                return false;
+            };
+
+            if (typeof video.requestVideoFrameCallback === 'function') {
+                let fired = false;
+                const cb = () => {
+                    if (fired) return;
+                    fired = true;
+                    hideLoader();
+                };
+                video.requestVideoFrameCallback(cb);
+                // احتياطي: بعد ثانيتين أعرض اللودر عنوة إذا كان هناك فيديو بأبعاد
+                setTimeout(() => {
+                    if (!fired) {
+                        fired = true;
+                        if (video.videoWidth > 0) hideLoader();
+                    }
+                }, 2500);
+            } else {
+                // fallback
+                const onTime = () => {
+                    if (video.currentTime > 0.1 && video.videoWidth > 0) {
+                        hideLoader();
+                        video.removeEventListener('timeupdate', onTime);
+                    }
+                };
+                video.addEventListener('timeupdate', onTime);
+                // احتياطي بعد ثانيتين
+                setTimeout(() => {
+                    if (video.videoWidth > 0) hideLoader();
+                }, 2500);
+            }
+        }
+
         function onMediaProgress() {
             lastProgressTime = Date.now();
             stallRecoveryCount = 0;
@@ -3613,9 +3598,6 @@
             }
         }
 
-        // ═══════════════════════════════════════════════════════════
-        //  مشغل HLS
-        // ═══════════════════════════════════════════════════════════
         function createHls(u) {
             if (playerVideo.canPlayType && playerVideo.canPlayType('application/vnd.apple.mpegurl')) {
                 nativePlay(u);
@@ -3695,9 +3677,6 @@
             });
         }
 
-        // ═══════════════════════════════════════════════════════════
-        //  مشغل DASH
-        // ═══════════════════════════════════════════════════════════
         function createDash(manifest, drm) {
             if (!window.shaka) { onFatalFailover(); return; }
             try { shaka.polyfill.installAll(); } catch(e){}
@@ -3760,11 +3739,16 @@
             });
         }
 
-        // ═══════════════════════════════════════════════════════════
-        //  مشغل MPEG-TS
-        // ═══════════════════════════════════════════════════════════
         function createMpegts(u) {
-            if (!window.mpegts || !mpegts.isSupported()) { nativePlay(u); return; }
+            if (!window.mpegts || !mpegts.isSupported()) {
+                // إذا لم يكن mpegts مدعوماً، جرّب HLS
+                if (currentUrl && /\.m3u8(\?|\||$)/i.test(currentUrl) && window.Hls && Hls.isSupported()) {
+                    createHls(currentUrl);
+                    return;
+                }
+                nativePlay(u);
+                return;
+            }
             mpegtsPlayer = mpegts.createPlayer({
                 type: 'mpegts',
                 isLive: true,
@@ -3791,7 +3775,20 @@
             });
             mpegtsPlayer.attachMediaElement(playerVideo);
             mpegtsPlayer.on(mpegts.Events.ERROR, () => {
-                if (!playingStarted) onFatalFailover();
+                // إذا فشل TS قبل بدء التشغيل، جرّب HLS مرة واحدة
+                if (!playingStarted) {
+                    try { mpegtsPlayer.destroy(); } catch(e){}
+                    mpegtsPlayer = null;
+                    if (playerVideo) {
+                        try { playerVideo.removeAttribute('src'); } catch(e){}
+                        try { playerVideo.load(); } catch(e){}
+                    }
+                    if (currentUrl && /\.m3u8(\?|\||$)/i.test(currentUrl) && window.Hls && Hls.isSupported()) {
+                        createHls(currentUrl);
+                        return;
+                    }
+                    onFatalFailover();
+                }
             });
             mpegtsPlayer.load();
             tryPlayVideo();
@@ -3811,6 +3808,14 @@
         function attemptPlay() {
             const url = currentUrl;
             if (!url) return;
+
+            // ★★★ للبث المباشر: استخدم رابط TS مباشرةً عبر mpegts.js ★★★
+            // هذا يضمن ظهور الفيديو فوراً بدون تأخير (لأن رابط m3u8 قد يشغّل الصوت فقط)
+            if (!isVodPlaying && currentTsUrl && window.mpegts && mpegts.isSupported()) {
+                triedTsFallback = true; // منع الحلقة اللانهائية (لا نعود لـ TS من HLS)
+                createMpegts(currentTsUrl);
+                return;
+            }
 
             const isMPD = /\.mpd(\?|\||$)/i.test(url);
             const isTS = /\.ts($|\?)/i.test(url);
@@ -4125,9 +4130,9 @@
                 v.addEventListener('progress', onMediaProgress);
                 v.addEventListener('playing', onMediaProgress);
                 v.addEventListener('canplay', onMediaProgress);
+
                 v.addEventListener('loadeddata', () => {
                     onMediaProgress();
-                    hideLoader();
                 });
 
                 v.addEventListener('play', () => {
@@ -4136,6 +4141,8 @@
                     if (icon) icon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>';
                     if (isVodPlaying) { updateProgressBar(); startProgressPolling(); }
                     resetStallWatchdog();
+                    // ★ إخفاء اللودر عند أول إطار فيديو فعلي
+                    watchForFirstFrame(v);
                 });
                 v.addEventListener('pause', () => {
                     const icon = document.getElementById('playPauseIcon');
@@ -4149,8 +4156,8 @@
                     // المراقب يتولى الأمر
                 });
                 v.addEventListener('playing', () => {
-                    hideLoader();
                     onMediaProgress();
+                    watchForFirstFrame(v);
                 });
                 v.addEventListener('seeked', () => {
                     updateProgressBar();
@@ -4173,29 +4180,82 @@
             const searchBar = document.getElementById('search-bar');
             const searchInput = document.getElementById('search-input');
             if (show) {
+                updateSearchPlaceholder();
                 searchBar.classList.add('active');
                 searchInput.focus();
             } else {
                 searchBar.classList.remove('active');
                 searchInput.value = "";
-                filterChannels();
+                resetSearchStates();
+            }
+        }
+
+        function updateSearchPlaceholder() {
+            const input = document.getElementById('search-input');
+            if (!input) return;
+            const activeSection = document.querySelector('.page-section.active');
+            const id = activeSection ? activeSection.id : 'channels';
+            if (id === 'vod') {
+                input.placeholder = translations[currentLang].search_placeholder_vod || 'ابحث عن فيلم أو مسلسل أو قناة...';
+            } else if (id === 'favorites') {
+                input.placeholder = translations[currentLang].search_placeholder_fav || 'ابحث في المفضلة...';
+            } else {
+                input.placeholder = translations[currentLang].search_placeholder || 'ابحث عن قناة...';
             }
         }
 
         function filterChannels() {
             const filterText = document.getElementById('search-input').value.toLowerCase().trim();
+            const activeSection = document.querySelector('.page-section.active');
+            const sectionId = activeSection ? activeSection.id : 'channels';
+
+            if (filterText === '') {
+                resetSearchStates();
+                return;
+            }
+
+            if (sectionId === 'vod') {
+                filterInVod(filterText);
+            } else if (sectionId === 'favorites') {
+                filterInFavorites(filterText);
+            } else {
+                filterInChannels(filterText);
+            }
+        }
+
+        function resetSearchStates() {
+            const mainChannelsContent = document.getElementById('main-channels-content');
+            if (mainChannelsContent) mainChannelsContent.style.display = 'flex';
+            const searchResultsSection = document.getElementById('search-results-section');
+            if (searchResultsSection) searchResultsSection.classList.remove('active');
+            const searchResultsGrid = document.getElementById('search-results-grid');
+            if (searchResultsGrid) searchResultsGrid.innerHTML = '';
+
+            resetVodFilter();
+
+            const chDiv = document.getElementById('vod-channels-search-results');
+            if (chDiv) chDiv.style.display = 'none';
+
+            const favCards = document.querySelectorAll('#favorites-grid .channel-card');
+            favCards.forEach(c => c.style.display = '');
+
+            const noResFav = document.querySelector('#favorites-grid .no-results-msg');
+            if (noResFav) noResFav.remove();
+        }
+
+        function filterInChannels(text) {
+            resetVodFilter();
+            const chDiv = document.getElementById('vod-channels-search-results');
+            if (chDiv) chDiv.style.display = 'none';
+            document.querySelectorAll('#favorites-grid .channel-card').forEach(c => c.style.display = '');
+            const favNoRes = document.querySelector('#favorites-grid .no-results-msg');
+            if (favNoRes) favNoRes.remove();
+
             const mainContent = document.getElementById('main-channels-content');
             const searchResultsSection = document.getElementById('search-results-section');
             const resultsGrid = document.getElementById('search-results-grid');
 
             resultsGrid.innerHTML = '';
-
-            if (filterText === "") {
-                searchResultsSection.classList.remove('active');
-                mainContent.style.display = "flex";
-                return;
-            }
-
             mainContent.style.display = "none";
             searchResultsSection.classList.add('active');
 
@@ -4207,7 +4267,7 @@
                 const nameAr = (card.getAttribute('data-ar') || "").toLowerCase();
                 const nameEn = (card.getAttribute('data-en') || "").toLowerCase();
 
-                if (nameAr.includes(filterText) || nameEn.includes(filterText)) {
+                if (nameAr.includes(text) || nameEn.includes(text)) {
                     foundCount++;
                     const clone = card.cloneNode(true);
                     const titleElem = clone.querySelector('[data-card-title]');
@@ -4237,6 +4297,117 @@
             resultsGrid.appendChild(frag);
         }
 
+        function filterInVod(text) {
+            const mainChannelsContent = document.getElementById('main-channels-content');
+            if (mainChannelsContent) mainChannelsContent.style.display = 'flex';
+            const searchResultsSection = document.getElementById('search-results-section');
+            if (searchResultsSection) searchResultsSection.classList.remove('active');
+            const searchResultsGrid = document.getElementById('search-results-grid');
+            if (searchResultsGrid) searchResultsGrid.innerHTML = '';
+
+            document.querySelectorAll('#favorites-grid .channel-card').forEach(c => c.style.display = '');
+            const favNoRes = document.querySelector('#favorites-grid .no-results-msg');
+            if (favNoRes) favNoRes.remove();
+
+            vodMovieElements.forEach(({ el, name }) => {
+                el.style.display = name.includes(text) ? '' : 'none';
+            });
+
+            vodSeriesElements.forEach(({ el, name }) => {
+                el.style.display = name.includes(text) ? '' : 'none';
+            });
+
+            const moviesGrid = document.getElementById('vod-movies-grid');
+            const seriesGrid = document.getElementById('vod-series-grid');
+            const hasMovies = vodMovieElements.length > 0;
+            const hasSeries = vodSeriesElements.length > 0;
+
+            if (hasMovies) moviesGrid.style.display = 'grid';
+            if (hasSeries) seriesGrid.style.display = 'grid';
+
+            const channelsMatches = [];
+            document.querySelectorAll('#main-channels-content .channel-card').forEach(card => {
+                const ar = (card.getAttribute('data-ar') || '').toLowerCase();
+                const en = (card.getAttribute('data-en') || '').toLowerCase();
+                if (ar.includes(text) || en.includes(text)) {
+                    channelsMatches.push({
+                        id: card.getAttribute('data-id'),
+                        name: card.getAttribute('data-ar') || '',
+                        nameAr: card.getAttribute('data-ar') || '',
+                        nameEn: card.getAttribute('data-en') || '',
+                        icon: card.getAttribute('data-icon') || '',
+                        streamUrl: card.getAttribute('data-url') || '',
+                        streamUrlTs: card.getAttribute('data-ts-url') || ''
+                    });
+                }
+            });
+
+            const chDiv = document.getElementById('vod-channels-search-results');
+            const chCont = document.getElementById('vod-channels-search-container');
+            if (chDiv && chCont) {
+                if (channelsMatches.length > 0) {
+                    chCont.innerHTML = '';
+                    channelsMatches.slice(0, 20).forEach(ch => {
+                        chCont.appendChild(createChannelCard(ch));
+                    });
+                    chDiv.style.display = 'block';
+                } else {
+                    chDiv.style.display = 'none';
+                }
+            }
+        }
+
+        function filterInFavorites(text) {
+            const mainChannelsContent = document.getElementById('main-channels-content');
+            if (mainChannelsContent) mainChannelsContent.style.display = 'flex';
+            const searchResultsSection = document.getElementById('search-results-section');
+            if (searchResultsSection) searchResultsSection.classList.remove('active');
+            const searchResultsGrid = document.getElementById('search-results-grid');
+            if (searchResultsGrid) searchResultsGrid.innerHTML = '';
+
+            resetVodFilter();
+            const chDiv = document.getElementById('vod-channels-search-results');
+            if (chDiv) chDiv.style.display = 'none';
+
+            const favGrid = document.getElementById('favorites-grid');
+            const cards = favGrid.querySelectorAll('.channel-card');
+            let found = 0;
+            cards.forEach(c => {
+                const ar = (c.getAttribute('data-ar') || '').toLowerCase();
+                const en = (c.getAttribute('data-en') || '').toLowerCase();
+                const matches = ar.includes(text) || en.includes(text);
+                c.style.display = matches ? '' : 'none';
+                if (matches) found++;
+            });
+
+            const existingNoRes = favGrid.querySelector('.no-results-msg');
+            if (existingNoRes) existingNoRes.remove();
+
+            if (found === 0 && cards.length > 0) {
+                const noRes = document.createElement('div');
+                noRes.className = 'no-results-msg';
+                noRes.innerText = translations[currentLang].no_results;
+                favGrid.appendChild(noRes);
+            }
+        }
+
+        function resetVodFilter() {
+            vodMovieElements.forEach(({ el }) => { el.style.display = ''; });
+            vodSeriesElements.forEach(({ el }) => { el.style.display = ''; });
+
+            const moviesGrid = document.getElementById('vod-movies-grid');
+            const seriesGrid = document.getElementById('vod-series-grid');
+            if (!moviesGrid || !seriesGrid) return;
+
+            if (currentVodTab === 'movies') {
+                moviesGrid.style.display = 'grid';
+                seriesGrid.style.display = 'none';
+            } else {
+                moviesGrid.style.display = 'none';
+                seriesGrid.style.display = 'grid';
+            }
+        }
+
         function switchPage(pageId, element) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             const activeSec = document.getElementById(pageId);
@@ -4257,6 +4428,16 @@
 
             if (pageId === 'favorites') {
                 renderFavoritesSection();
+            }
+
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                updateSearchPlaceholder();
+                if (searchInput.value.trim() !== '') {
+                    filterChannels();
+                } else {
+                    resetSearchStates();
+                }
             }
 
             const focusable = activeSec?.querySelector('button, a, .channel-card, .vod-card, .episode-card, .nav-item, input, .theme-btn, .contact-item');
@@ -4303,8 +4484,6 @@
 
             const pageTitleEl = document.getElementById('page-title');
             if (pageTitleEl) pageTitleEl.innerText = translations[lang].app_title;
-            const searchInputEl = document.getElementById('search-input');
-            if (searchInputEl) searchInputEl.placeholder = translations[lang].search_placeholder;
 
             document.querySelectorAll('[data-lang-key]').forEach(elem => {
                 const key = elem.getAttribute('data-lang-key');
@@ -4312,6 +4491,8 @@
                     elem.innerText = translations[lang][key];
                 }
             });
+
+            updateSearchPlaceholder();
 
             const cards = document.getElementsByClassName('channel-card');
             for (let card of cards) {
@@ -4524,7 +4705,6 @@
                         else return;
                         if (newIdx !== idx && cards[newIdx]) {
                             cards[newIdx].focus();
-                            cards[newIdx].scrollIntoView({ behavior: 'auto', block: 'nearest' });
                         }
                     }
                     return;
@@ -4552,7 +4732,6 @@
                         const firstCard = newContainer.querySelector('.channel-card');
                         if (firstCard) {
                             firstCard.focus();
-                            newContainer.scrollIntoView({ behavior: 'auto', block: 'center' });
                         }
                     }
                     return;
@@ -4566,7 +4745,25 @@
                     const containerRect = container.getBoundingClientRect();
                     const cardRect = newCard.getBoundingClientRect();
                     const scrollLeft = container.scrollLeft + (cardRect.left - containerRect.left) - (containerRect.width / 2) + (cardRect.width / 2);
-                    container.scrollTo({ left: scrollLeft, behavior: 'auto' });
+                    container.scrollLeft = scrollLeft;
+                }
+            }
+
+            if (activeElement && (activeElement.classList.contains('vod-card') || activeElement.classList.contains('episode-card'))) {
+                const grid = activeElement.parentElement;
+                if (!grid) return;
+                const items = Array.from(grid.querySelectorAll('.vod-card, .episode-card')).filter(el => el.style.display !== 'none');
+                const idx = items.indexOf(activeElement);
+                if (idx === -1) return;
+                const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length || 1;
+                let newIdx = idx;
+                if (key === 'ArrowRight') { e.preventDefault(); newIdx = Math.min(idx + 1, items.length - 1); }
+                else if (key === 'ArrowLeft') { e.preventDefault(); newIdx = Math.max(idx - 1, 0); }
+                else if (key === 'ArrowDown') { e.preventDefault(); newIdx = Math.min(idx + cols, items.length - 1); }
+                else if (key === 'ArrowUp') { e.preventDefault(); newIdx = Math.max(idx - cols, 0); }
+                else return;
+                if (newIdx !== idx && items[newIdx]) {
+                    items[newIdx].focus();
                 }
             }
 
@@ -4614,6 +4811,23 @@
             playerVideo = document.getElementById('channelVideo');
             updateMuteIcon();
             setupProgressBar();
+
+            const vodMainView = document.getElementById('vod-main-view');
+            if (vodMainView) {
+                const chDiv = document.createElement('div');
+                chDiv.id = 'vod-channels-search-results';
+                chDiv.style.display = 'none';
+                chDiv.innerHTML = `
+                    <h3 class="section-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 6h-7.59l3.29-3.29L16 2l-4 4-4-4-.71.71L10.59 6H3c-1.1 0-2 .89-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.11-.9-2-2-2zm0 14H3V8h18v12z"></path>
+                        </svg>
+                        <span>${translations[currentLang].search_match_channels}</span>
+                    </h3>
+                    <div class="horizontal-scroll-container" id="vod-channels-search-container"></div>
+                `;
+                vodMainView.insertBefore(chDiv, vodMainView.firstChild);
+            }
 
             try {
                 const groupedChannels = await fetchXtreamData();
